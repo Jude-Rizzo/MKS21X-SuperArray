@@ -49,6 +49,13 @@ public class SuperArray{
 
   public boolean add(String s){
     String[] ans = new String[size + 1];
+    if (size == 0){
+      size = 1;
+      data = new String[1];
+      data[0] = s;
+      return true;
+    }
+
     for (int i = 0; i <= data.length; i++){
       if (i == data.length){
         ans[i] = s;
@@ -66,12 +73,12 @@ public class SuperArray{
     return a;
   }
 
-public String toStringDebug(){
+  public String toStringDebug(){
     if (data == null)
       return "null";
     String ans = "[";
-    for(int i = 0; i <= data.length; i++){
-      if (i == data.length)
+    for(int i = 0; i < data.length; i++){
+      if (i == size - 1)
         return ans + data[i] + "]";
       ans += data[i];
     } return "Failed";
@@ -81,8 +88,8 @@ public String toStringDebug(){
     if (size == 0 || data[0] == null)
       return "[]";
     String ans = "[";
-    for(int i = 0; i <= data.length; i++){
-      if (i == data.length)
+    for(int i = 0; i < size; i++){
+      if (i == size - 1)
         return ans + data[i] + "]";
       if (data[i] == null)
         return ans;
