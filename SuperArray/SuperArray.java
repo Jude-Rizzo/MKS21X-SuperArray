@@ -66,11 +66,22 @@ public class SuperArray{
     return a;
   }
 
-  public String toString(){
+  public String toStringDebug(){
     String ans = "[";
-    for(int i = 0; i < data.length; i++){
+    for(int i = 0; i <= data.length; i++){
       if (i == data.length)
         return ans + data[i] + "]";
+      ans += data[i];
+    } return "Failed";
+  }
+
+  public String toString(){
+    String ans = "[";
+    for(int i = 0; i <= data.length; i++){
+      if (i == data.length)
+        return ans + data[i] + "]";
+      if (data[i] == null)
+        return ans;
       ans += data[i];
     } return "Failed";
   }
