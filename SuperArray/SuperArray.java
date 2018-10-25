@@ -67,8 +67,8 @@ public class SuperArray{
   }
 
 public String toStringDebug(){
-    if (data.length == 0)
-      return "[]";
+    if (data == null)
+      return "null";
     String ans = "[";
     for(int i = 0; i <= data.length; i++){
       if (i == data.length)
@@ -78,7 +78,7 @@ public String toStringDebug(){
   }
 
   public String toString(){
-    if (data.length == 0 || data[0] == null)
+    if (size == 0 || data[0] == null)
       return "[]";
     String ans = "[";
     for(int i = 0; i <= data.length; i++){
