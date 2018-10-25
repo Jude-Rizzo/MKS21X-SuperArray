@@ -56,9 +56,10 @@ public class SuperArray{
       return true;
     }
 
-    for (int i = 0; i <= data.length; i++){
-      if (i == data.length){
+    for (int i = 0; i <= size; i++){
+      if (i == size){
         ans[i] = s;
+        data = ans;
         size += 1;
         return true;
       }
@@ -80,7 +81,7 @@ public class SuperArray{
     for(int i = 0; i < data.length; i++){
       if (i == size - 1)
         return ans + data[i] + "]";
-      ans += data[i];
+      ans += (data[i] + ", ");
     } return "Failed";
   }
 
@@ -92,8 +93,8 @@ public class SuperArray{
       if (i == size - 1)
         return ans + data[i] + "]";
       if (data[i] == null)
-        return ans;
-      ans += data[i];
+        return ans + "]";
+      ans += (data[i] + ", ");
     } return "Failed";
   }
 
