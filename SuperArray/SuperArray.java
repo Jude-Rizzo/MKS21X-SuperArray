@@ -3,7 +3,7 @@ public class SuperArray{
   private int size;
 
   public SuperArray(){
-    data = new String[0];
+    data = null;
     size = 0;
   }
 
