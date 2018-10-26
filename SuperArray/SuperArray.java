@@ -47,6 +47,15 @@ public class SuperArray{
     return size;
   }
 
+  private boolean isFull(){
+    for(int i = 0; i < data.length; i++){
+      if (data[i] == null)
+        return false;
+    } return true;
+  }
+
+
+
   public boolean add(String s){
     String[] ans = new String[size + 1];
     if (size == 0){
@@ -55,6 +64,9 @@ public class SuperArray{
       data[0] = s;
       return true;
     }
+
+    if (this.isFull())
+      return false;
 
     for (int i = 0; i <= size; i++){
       if (i == size){
