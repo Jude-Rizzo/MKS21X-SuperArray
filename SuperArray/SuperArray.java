@@ -28,7 +28,9 @@ public class SuperArray{
 
   public boolean contains(String s){
     for(int i = 0;i < data.length; i++){
-      if (data[i].equals(s));
+      if (data[i] == null)
+        return false;
+      if (data[i].equals(s))
         return true;
     }
     return false;
@@ -113,11 +115,15 @@ public class SuperArray{
       return "[]";
     String ans = "[";
     for(int i = 0; i < size; i++){
-      if (i == size - 1)
+      if(data[i] == null && i < size - 1){
+
+      } else {
+        if(i == size - 1 && data[i] == null)
+          return ans + "]";
+        if (i == size - 1 && data[i] != null)
         return ans + data[i] + "]";
-      if (data[i] == null)
-        return ans + "]";
       ans += (data[i] + ", ");
+    }
     } return "Failed";
   }
 
