@@ -41,6 +41,8 @@ public class SuperArray{
 
   public void clear(){
     data = new String[0];
+    size = 0;
+
   }
 
   public int size(){
