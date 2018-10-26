@@ -3,16 +3,26 @@ public class SuperArray{
   private int size;
 
   public SuperArray(){
-    data = null;
-    size = 0;
+    data = new String[10];
+    size = 10;
   }
 
+  public boolean isEmpty(){
+    if (size == 0)
+      return true;
+    for(int i = 0; i < data.length; i++){
+      if(data[i] != null)
+        return false;
+    }    return true;
+  }
   public SuperArray(String[] data, int size){
     this.data = data;
     this.size = size;
   }
 
   public String get(int index){
+    if (size == 0)
+      return null;
     return data[index];
   }
 
@@ -70,14 +80,11 @@ public class SuperArray{
     if (this.isFull())
       return false;
 
-    for (int i = 0; i <= size; i++){
-      if (i == size){
-        ans[i] = s;
-        data = ans;
-        size += 1;
+    for(int i = 0; i < size; i++){
+      if (data[i] == null){
+        data[i] = s;
         return true;
       }
-      ans[i] = data[i];
     } return false;
 
   }
@@ -90,9 +97,11 @@ public class SuperArray{
 
   public String toStringDebug(){
     if (data == null)
-      return "null";
+      return null;
     String ans = "[";
     for(int i = 0; i < data.length; i++){
+      if (data[i] == null && i < size - 1)
+        ans += "null, ";
       if (i == size - 1)
         return ans + data[i] + "]";
       ans += (data[i] + ", ");
