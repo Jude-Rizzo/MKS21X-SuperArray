@@ -1,5 +1,6 @@
 public class SuperArray{
   private String[] data;
+  //new edit
   private int size;
 
   public SuperArray(){
