@@ -8,6 +8,16 @@ public class SuperArray{
     size = 10;
   }
 
+  public SuperArray(int startingCapacity){
+    if(startingCapacity < 0){
+      throw new IllegalArgumentException("must be greater than 0");
+    } else {
+      size = startingCapacity;
+    data = new String[startingCapacity];
+  }
+
+  }
+
   public boolean isEmpty(){
     if (size == 0)
       return true;
