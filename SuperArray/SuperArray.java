@@ -32,10 +32,14 @@ public class SuperArray{
   }
 
   public String get(int index){
+    if(index > size || index < 0){
+      throw new IllegalArgumentException("IndexOutOfBoundsException");
+    } else {
     if (size == 0)
       return null;
     return data[index];
   }
+}
 
   public boolean contains(String s){
     for(int i = 0;i < data.length; i++){
@@ -79,16 +83,22 @@ public class SuperArray{
     } return true;
   }
 
+  private void resize(){
+    if (size == 0){
+      size += 1;
+      data = new String[1];
+    }
+    size = 2 * size + 1;
+    String[] ans  = new String[size];
 
+    for(int i = 0; i < data.length; i++){
+      ans[i] = data[i];
+    }
+    data = ans;
+  }
 
   public boolean add(String s){
-    String[] ans = new String[size + 1];
-    if (size == 0){
-      size = 1;
-      data = new String[1];
-      data[0] = s;
-      return true;
-    }
+    this.resize();
 
     if (this.isFull())
       return false;
@@ -103,6 +113,9 @@ public class SuperArray{
   }
 
   public String set(int index, String element){
+    if(index >= size || index < 0){
+      throw new IllegalArgumentException("index out of bounds");
+    }
     String a = data[index];
     data[index] = element;
     return a;
@@ -111,6 +124,9 @@ public class SuperArray{
   public String toStringDebug(){
     if (data == null)
       return null;
+    if (size == 0){
+      return "[]";
+    }
     String ans = "[";
     for(int i = 0; i < data.length; i++){
       if (data[i] == null && i < size - 1)
@@ -139,6 +155,9 @@ public class SuperArray{
   }
 
   public void add(int index, String s){
+    if(index >= size || index < 0){
+      throw new IllegalArgumentException("index too large for array");
+    } else {
     size += 1;
     String[] ans = new String[size];
     for(int i = 0; i < size; i++){
@@ -150,10 +169,14 @@ public class SuperArray{
         ans[i] = data[i - 1];
       if (i == size - 1)
         data = ans;
+      }
     }
 }
 
   public String remove(int index){
+    if (index >= size || index < 0){
+      throw new IllegalArgumentException("Argument out of bounds");
+    } else {
     size += -1;
     String a = "";
     String ans[] = new String[size];
@@ -167,6 +190,7 @@ public class SuperArray{
           ans[i] = data[i + 1];
     } data = ans;
     return a;
+  }
 
   }
 
