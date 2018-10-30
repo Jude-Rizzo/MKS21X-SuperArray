@@ -11,10 +11,10 @@ public class SuperArray{
   public SuperArray(int startingCapacity){
     if(startingCapacity < 0){
       throw new IllegalArgumentException("must be greater than 0");
-    } else {
+    }
       size = startingCapacity;
     data = new String[startingCapacity];
-  }
+
 
   }
 
@@ -33,12 +33,12 @@ public class SuperArray{
 
   public String get(int index){
     if(index > size || index < 0){
-      throw new IllegalArgumentException("IndexOutOfBoundsException");
-    } else {
+      throw new IndexOutOfBoundsException("IndexOutOfBoundsException");
+    }
     if (size == 0)
       return null;
     return data[index];
-  }
+
 }
 
   public boolean contains(String s){
@@ -53,16 +53,20 @@ public class SuperArray{
 
   public int indexOf(String s){
     for(int i = 0;i < data.length; i++){
+      if(data[i] != null){
       if (data[i].equals(s))
         return i;
+      }
     } return -1;
  }
 
  public int lastIndexOf(String s){
-   for(int i = data.length - 1; i > -1; i ++){
+   for(int i = data.length - 1; i > -1; i -= 1){
+     if(data[i] != null){
      if (data[i].equals(s)){
        return i;
      }
+   }
    } return -1;
  }
 
@@ -114,7 +118,7 @@ public class SuperArray{
 
   public String set(int index, String element){
     if(index >= size || index < 0){
-      throw new IllegalArgumentException("index out of bounds");
+      throw new IndexOutOfBoundsException("index out of bounds");
     }
     String a = data[index];
     data[index] = element;
@@ -156,8 +160,8 @@ public class SuperArray{
 
   public void add(int index, String s){
     if(index >= size || index < 0){
-      throw new IllegalArgumentException("index too large for array");
-    } else {
+      throw new IndexOutOfBoundsException("index too large for array");
+    }
     size += 1;
     String[] ans = new String[size];
     for(int i = 0; i < size; i++){
@@ -169,14 +173,14 @@ public class SuperArray{
         ans[i] = data[i - 1];
       if (i == size - 1)
         data = ans;
-      }
+
     }
 }
 
   public String remove(int index){
     if (index >= size || index < 0){
-      throw new IllegalArgumentException("Argument out of bounds");
-    } else {
+      throw new IndexOutOfBoundsException("Argument out of bounds");
+    }
     size += -1;
     String a = "";
     String ans[] = new String[size];
@@ -192,7 +196,7 @@ public class SuperArray{
     return a;
   }
 
-  }
+
 
   public boolean remove(String element){
     if (this.contains(element)){
