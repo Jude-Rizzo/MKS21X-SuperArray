@@ -87,34 +87,20 @@ public class SuperArray{
     } return true;
   }
 
-  private void resize(){
-    if (size == 0){
-      size += 1;
-      data = new String[1];
-    }
-    size = 2 * size + 1;
-    String[] ans  = new String[size];
-
-    for(int i = 0; i < data.length; i++){
-      ans[i] = data[i];
-    }
-    data = ans;
-  }
-
   public boolean add(String s){
-    this.resize();
+     if (size == data.length)resize();
+     data[size] = s;
+     size++;
+     return true;
+   }
+   private void resize(){
+     String[] newArr = new String[size * 2 + 1];
+     for (int i = 0; i < size; i++){
+       newArr[i] = data[i];
+     }
+     data = newArr;
+   }
 
-    if (this.isFull())
-      return false;
-
-    for(int i = 0; i < size; i++){
-      if (data[i] == null){
-        data[i] = s;
-        return true;
-      }
-    } return false;
-
-  }
 
   public String set(int index, String element){
     if(index >= size || index < 0){
