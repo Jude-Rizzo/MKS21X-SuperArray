@@ -94,11 +94,11 @@ public class SuperArray{
      return true;
    }
    private void resize(){
-     String[] newArr = new String[size * 2 + 1];
+     String[] newAr = new String[size * 2 + 1];
      for (int i = 0; i < size; i++){
-       newArr[i] = data[i];
+       newAr[i] = data[i];
      }
-     data = newArr;
+     data = newAr;
    }
 
 
@@ -162,25 +162,25 @@ public class SuperArray{
 
     }
 }
-
-  public String remove(int index){
-    if (index >= size || index < 0){
-      throw new IndexOutOfBoundsException("Argument out of bounds");
+public String remove( int index){
+    if (index < 0 || index > size())
+    throw new IndexOutOfBoundsException( index + "not in range");
+    String output = "";
+    if ( !(index < 0 || index > size())) {
+      String[] ans = new String[data.length];
+      for( int x = 0; x < index; x++) {
+        ans[x] = data[x];
+      }
+      output = data[index];
+      size--;
+      for ( int x = index; x < size; x++){
+        ans[x] = data[x+1];
+      }
+      data = ans;
     }
-    size += -1;
-    String a = "";
-    String ans[] = new String[size];
-    for(int i = 0; i < size; i++){
-      if(i < index)
-        ans[i] = data[i];
-      if(i == index)
-        a = data[i];
-        ans[i] = data[i + 1];
-      if(i > index)
-          ans[i] = data[i + 1];
-    } data = ans;
-    return a;
+    return output;
   }
+
 
 
 
