@@ -5,7 +5,7 @@ public class SuperArray{
 
   public SuperArray(){
     data = new String[10];
-    size = 10;
+    size = 0;
   }
 
   public SuperArray(int startingCapacity){
@@ -77,8 +77,16 @@ public class SuperArray{
   }
 
   public int size(){
-    return size;
+    int ans=0;
+    for(int i=0;i<data.length;i++)
+    {
+      if (data[i]!=null)
+        ans++;
+
+    }
+    return ans;
   }
+
 
   private boolean isFull(){
     for(int i = 0; i < data.length; i++){
@@ -144,24 +152,25 @@ public class SuperArray{
     } return "Failed";
   }
 
-  public void add(int index, String s){
-    if(index >= size || index < 0){
-      throw new IndexOutOfBoundsException("index too large for array");
-    }
-    size += 1;
-    String[] ans = new String[size];
-    for(int i = 0; i < size; i++){
-      if(i < index)
-        ans[i] = data[i];
-      if(i == index)
-        ans[i] = s;
-      if (i > index)
-        ans[i] = data[i - 1];
-      if (i == size - 1)
-        data = ans;
+  public void add(int index, String element){
+    String[] listafter=new String[size];
 
+    if (index < 0 || index > size)
+    {
+      throw new IndexOutOfBoundsException();
+    }  else {
+      if(size==data.length)
+      { resize();
+      }
+      for(int i=size;i>index;i-=1)
+      {
+        data[i]=data[i-1];
+      }
+      data[index]=element;
+      size++;
     }
-}
+
+  }
 public String remove( int index){
     if (index < 0 || index > size())
     throw new IndexOutOfBoundsException( index + "not in range");
